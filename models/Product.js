@@ -37,7 +37,7 @@ const productSchema = new mongoose.Schema({
     },
     artisan: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Artisan",
+        ref: "artisan",
         required: true
     },
     images: [{
@@ -155,7 +155,7 @@ const productSchema = new mongoose.Schema({
     shipping: {
         weight: {
             type: Number,
-            required: true
+            required: false
         },
         dimensions: {
             length: Number,

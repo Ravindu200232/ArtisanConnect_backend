@@ -35,7 +35,7 @@ router.get("/:id/reviews", validateObjectId(), validatePagination, getProductRev
 // Protected routes - Artisan only
 router.use(requireAuth);
 
-router.post("/", requireRole("artisan"), sanitizeInput, validateProduct, createProduct);
+router.post("/", requireRole("artisan"), sanitizeInput, createProduct);
 router.get("/artisan/my-products", requireRole("artisan"), validatePagination, getArtisanProducts);
 router.put("/:id", requireRole("artisan"), validateObjectId(), sanitizeInput, updateProduct);
 router.delete("/:id", requireRole("artisan"), validateObjectId(), deleteProduct);
