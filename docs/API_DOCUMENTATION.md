@@ -15,6 +15,7 @@
 ## Authentication Structure
 
 ### Register/Login Response Format
+
 ```json
 {
   "message": "Login successful",
@@ -34,15 +35,17 @@
 # 🎨 ARTISAN ENDPOINTS
 
 ## 1. Register Artisan
+
 **POST** `/artisans/register`
 
 ### Request Body:
+
 ```json
 {
   "email": "master.craftsman@gmail.com",
   "password": "SecurePass123",
   "firstName": "Upali",
-  "lastName": "Seneviratne", 
+  "lastName": "Seneviratne",
   "businessName": "Traditional Mask Workshop",
   "phone": "+94712345678",
   "address": "123 Craft Street, Colombo",
@@ -56,6 +59,7 @@
 ```
 
 ### Response:
+
 ```json
 {
   "message": "Artisan registered successfully",
@@ -64,9 +68,11 @@
 ```
 
 ## 2. Artisan Login
+
 **POST** `/artisans/login`
 
 ### Request Body:
+
 ```json
 {
   "email": "master.craftsman@gmail.com",
@@ -75,10 +81,12 @@
 ```
 
 ## 3. Get Business Insights (AI)
+
 **GET** `/artisans/ai/business-insights`
-*Requires: Artisan Authentication*
+_Requires: Artisan Authentication_
 
 ### Response:
+
 ```json
 {
   "message": "Business insights generated successfully",
@@ -115,10 +123,12 @@
 ```
 
 ## 4. AI Photo Analysis
+
 **POST** `/artisans/ai/photo-analysis`
-*Requires: Artisan Authentication*
+_Requires: Artisan Authentication_
 
 ### Request Body:
+
 ```json
 {
   "imageUrl": "https://example.com/product-image.jpg",
@@ -127,6 +137,7 @@
 ```
 
 ### Response:
+
 ```json
 {
   "message": "Photo analysis completed",
@@ -152,10 +163,12 @@
 # 🛍️ PRODUCT ENDPOINTS
 
 ## 1. Create Product
+
 **POST** `/products`
-*Requires: Artisan Authentication*
+_Requires: Artisan Authentication_
 
 ### Request Body:
+
 ```json
 {
   "name": "Traditional Kolam Mask",
@@ -203,6 +216,7 @@
 ```
 
 ### Response:
+
 ```json
 {
   "message": "Product created successfully",
@@ -226,9 +240,11 @@
 ```
 
 ## 2. Get Products with Filters
+
 **GET** `/products?category=Masks&minPrice=5000&maxPrice=10000&page=1&limit=10`
 
 ### Response:
+
 ```json
 {
   "message": "Products fetched successfully",
@@ -269,9 +285,11 @@
 ```
 
 ## 3. Get Single Product with Cultural Enhancement
+
 **GET** `/products/PRD0001`
 
 ### Response:
+
 ```json
 {
   "message": "Product fetched successfully",
@@ -315,9 +333,11 @@
 # 👤 CUSTOMER ENDPOINTS
 
 ## 1. Customer Registration
+
 **POST** `/customers/register`
 
 ### Request Body:
+
 ```json
 {
   "email": "customer@example.com",
@@ -347,10 +367,12 @@
 ```
 
 ## 2. Get Personalized Recommendations (AI)
+
 **GET** `/customers/recommendations`
-*Requires: Customer Authentication*
+_Requires: Customer Authentication_
 
 ### Response:
+
 ```json
 {
   "message": "Personalized recommendations generated",
@@ -377,10 +399,12 @@
 ```
 
 ## 3. Track Product View (AI Learning)
+
 **POST** `/customers/track-view`
-*Requires: Customer Authentication*
+_Requires: Customer Authentication_
 
 ### Request Body:
+
 ```json
 {
   "productId": "PRD0001",
@@ -389,6 +413,7 @@
 ```
 
 ### Response:
+
 ```json
 {
   "message": "Product view tracked successfully"
@@ -400,9 +425,11 @@
 # 🤖 AI SERVICES ENDPOINTS
 
 ## 1. Generate Cultural Story
+
 **POST** `/ai/cultural-story`
 
 ### Request Body:
+
 ```json
 {
   "productName": "Traditional Water Pot",
@@ -413,6 +440,7 @@
 ```
 
 ### Response:
+
 ```json
 {
   "message": "Cultural story generated successfully",
@@ -427,9 +455,11 @@
 ```
 
 ## 2. Real-time Translation
+
 **POST** `/ai/translate`
 
 ### Request Body:
+
 ```json
 {
   "text": "Beautiful handcrafted item",
@@ -440,6 +470,7 @@
 ```
 
 ### Response:
+
 ```json
 {
   "message": "Translation completed",
@@ -455,9 +486,11 @@
 ```
 
 ## 3. AR Product Visualization
+
 **POST** `/ai/ar-visualization`
 
 ### Request Body:
+
 ```json
 {
   "productId": "PRD0001",
@@ -471,6 +504,7 @@
 ```
 
 ### Response:
+
 ```json
 {
   "message": "AR visualization data generated",
@@ -502,10 +536,12 @@
 # 📦 ORDER ENDPOINTS
 
 ## 1. Create Order
+
 **POST** `/orders`
-*Requires: Customer Authentication*
+_Requires: Customer Authentication_
 
 ### Request Body:
+
 ```json
 {
   "items": [
@@ -532,6 +568,7 @@
 ```
 
 ### Response:
+
 ```json
 {
   "message": "Order created successfully",
@@ -558,10 +595,12 @@
 ```
 
 ## 2. Get Orders
+
 **GET** `/orders`
-*Requires: Customer/Artisan/Admin Authentication*
+_Requires: Customer/Artisan/Admin Authentication_
 
 ### Response:
+
 ```json
 {
   "message": "Orders fetched successfully",
@@ -585,10 +624,12 @@
 ```
 
 ## 3. Update Order Status
+
 **PUT** `/orders/ORD0001/status`
-*Requires: Artisan/Admin Authentication*
+_Requires: Artisan/Admin Authentication_
 
 ### Request Body:
+
 ```json
 {
   "status": "shipped",
@@ -602,10 +643,12 @@
 # 💳 PAYMENT ENDPOINTS
 
 ## 1. Process Payment
+
 **POST** `/payments/process`
-*Requires: Customer Authentication*
+_Requires: Customer Authentication_
 
 ### Request Body:
+
 ```json
 {
   "orderId": "ORD0001",
@@ -626,6 +669,7 @@
 ```
 
 ### Response:
+
 ```json
 {
   "message": "Payment processed successfully",
@@ -643,9 +687,11 @@
 # 🏭 SUPPLIER ENDPOINTS
 
 ## 1. Get Materials
+
 **GET** `/suppliers/materials?category=Wood&available=true`
 
 ### Response:
+
 ```json
 {
   "message": "Materials fetched successfully",
@@ -675,9 +721,11 @@
 ```
 
 ## 2. Process Supply Order
+
 **POST** `/suppliers/orders`
 
 ### Request Body:
+
 ```json
 {
   "materials": [
@@ -696,6 +744,7 @@
 ```
 
 ### Response:
+
 ```json
 {
   "message": "Supply order processed",
@@ -714,9 +763,11 @@
 # 🏛️ TOURISM ENDPOINTS
 
 ## 1. Get Tourism Packages
+
 **GET** `/tourism/packages?type=Workshop&location=Western&maxPrice=8000`
 
 ### Response:
+
 ```json
 {
   "message": "Tourism packages fetched successfully",
@@ -756,10 +807,12 @@
 ```
 
 ## 2. Book Tourism Package
+
 **POST** `/tourism/bookings`
-*Requires: Customer Authentication*
+_Requires: Customer Authentication_
 
 ### Request Body:
+
 ```json
 {
   "packageId": "PKG0001",
@@ -770,6 +823,7 @@
 ```
 
 ### Response:
+
 ```json
 {
   "message": "Tourism package booked successfully",
@@ -785,9 +839,11 @@
 ```
 
 ## 3. GPS Culture Discovery
+
 **GET** `/tourism/gps-culture/6.9271/79.8612?radius=10`
 
 ### Response:
+
 ```json
 {
   "message": "Cultural points discovered",
@@ -830,10 +886,12 @@
 # 🔧 IOT ENDPOINTS
 
 ## 1. Register IoT Device
+
 **POST** `/iot/devices/register`
-*Requires: Artisan/Admin Authentication*
+_Requires: Artisan/Admin Authentication_
 
 ### Request Body:
+
 ```json
 {
   "deviceType": "environmental_sensor",
@@ -848,6 +906,7 @@
 ```
 
 ### Response:
+
 ```json
 {
   "message": "IoT device registered successfully",
@@ -865,10 +924,12 @@
 ```
 
 ## 2. Get Inventory Status
+
 **GET** `/iot/inventory/ART0001`
-*Requires: Artisan/Admin Authentication*
+_Requires: Artisan/Admin Authentication_
 
 ### Response:
+
 ```json
 {
   "message": "Inventory status retrieved successfully",
@@ -908,9 +969,11 @@
 # ⛓️ BLOCKCHAIN ENDPOINTS
 
 ## 1. Generate NFT Certificate
+
 **POST** `/blockchain/generate-nft`
 
 ### Request Body:
+
 ```json
 {
   "productId": "PRD0001",
@@ -920,6 +983,7 @@
 ```
 
 ### Response:
+
 ```json
 {
   "message": "NFT certificate generated successfully",
@@ -937,7 +1001,7 @@
           "value": "Authenticity Certificate"
         },
         {
-          "trait_type": "Artisan ID", 
+          "trait_type": "Artisan ID",
           "value": "ART0001"
         }
       ]
@@ -955,10 +1019,12 @@
 # 📝 REVIEWS ENDPOINTS
 
 ## 1. Add Review
+
 **POST** `/reviews`
-*Requires: Customer Authentication*
+_Requires: Customer Authentication_
 
 ### Request Body:
+
 ```json
 {
   "productId": "PRD0001",
@@ -972,6 +1038,7 @@
 ```
 
 ### Response:
+
 ```json
 {
   "message": "Review added successfully",
@@ -988,9 +1055,11 @@
 ```
 
 ## 2. Get Product Reviews
+
 **GET** `/reviews/product/PRD0001`
 
 ### Response:
+
 ```json
 {
   "message": "Product reviews fetched successfully",
@@ -1024,9 +1093,11 @@
 # ❓ INQUIRY ENDPOINTS
 
 ## 1. Create Inquiry
+
 **POST** `/inquiries`
 
 ### Request Body:
+
 ```json
 {
   "customerName": "John Doe",
@@ -1039,6 +1110,7 @@
 ```
 
 ### Response:
+
 ```json
 {
   "message": "Inquiry created successfully",
@@ -1056,6 +1128,7 @@
 # ⚠️ ERROR RESPONSES
 
 ## Standard Error Format:
+
 ```json
 {
   "message": "Error description",
@@ -1064,6 +1137,7 @@
 ```
 
 ## Common HTTP Status Codes:
+
 - **200**: Success
 - **201**: Created successfully
 - **400**: Bad Request - Invalid data
@@ -1077,6 +1151,7 @@
 ## Sample Error Responses:
 
 ### 400 - Validation Error:
+
 ```json
 {
   "message": "Validation failed",
@@ -1094,6 +1169,7 @@
 ```
 
 ### 401 - Authentication Required:
+
 ```json
 {
   "message": "Authentication required"
@@ -1101,6 +1177,7 @@
 ```
 
 ### 403 - Access Denied:
+
 ```json
 {
   "message": "Access denied. Insufficient permissions."
@@ -1108,6 +1185,7 @@
 ```
 
 ### 404 - Not Found:
+
 ```json
 {
   "message": "Product not found"
@@ -1115,6 +1193,7 @@
 ```
 
 ### 429 - Rate Limit:
+
 ```json
 {
   "message": "Too many requests from this IP, please try again later."
@@ -1126,12 +1205,13 @@
 # 🔄 INTEGRATION EXAMPLES
 
 ## React/JavaScript Integration:
+
 ```javascript
 // API Configuration
-const API_BASE = 'http://localhost:3000/api';
+const API_BASE = "http://localhost:3000/api";
 const getHeaders = (token) => ({
-  'Content-Type': 'application/json',
-  'Authorization': `Bearer ${token}`
+  "Content-Type": "application/json",
+  Authorization: `Bearer ${token}`,
 });
 
 // Get Products Example
@@ -1144,20 +1224,21 @@ const fetchProducts = async (filters = {}) => {
 // Create Order Example
 const createOrder = async (orderData, token) => {
   const response = await fetch(`${API_BASE}/orders`, {
-    method: 'POST',
+    method: "POST",
     headers: getHeaders(token),
-    body: JSON.stringify(orderData)
+    body: JSON.stringify(orderData),
   });
   return response.json();
 };
 ```
 
 ## Flutter/Dart Integration:
+
 ```dart
 // API Service Class
 class ArtisanConnectAPI {
   static const String baseURL = 'http://localhost:3000/api';
-  
+
   static Future<Map<String, dynamic>> getProducts({
     String? category,
     double? minPrice,
@@ -1167,12 +1248,241 @@ class ArtisanConnectAPI {
     if (category != null) params['category'] = category;
     if (minPrice != null) params['minPrice'] = minPrice.toString();
     if (maxPrice != null) params['maxPrice'] = maxPrice.toString();
-    
+
     final uri = Uri.parse('$baseURL/products').replace(queryParameters: params);
     final response = await http.get(uri);
     return json.decode(response.body);
   }
 }
 ```
+
+# ArtisanConnect API Routes
+
+**Base URL:** `http://localhost:3000/api`
+
+## ARTISAN ROUTES (`/api/artisans`)
+
+```
+POST   /artisans/register
+POST   /artisans/login
+GET    /artisans
+GET    /artisans/:artisanId
+PUT    /artisans/:artisanId
+POST   /artisans/ai/photo-analysis
+GET    /artisans/ai/business-insights
+PUT    /artisans/admin/block/:artisanId
+```
+
+## CUSTOMER ROUTES (`/api/customers`)
+
+```
+POST   /customers/register
+POST   /customers/login
+GET    /customers/recommendations
+PUT    /customers/preferences
+POST   /customers/track-view
+```
+
+## PRODUCT ROUTES (`/api/products`)
+
+```
+POST   /products
+GET    /products
+GET    /products/:productId
+PUT    /products/:productId
+DELETE /products/:productId
+```
+
+## ORDER ROUTES (`/api/orders`)
+
+```
+POST   /orders
+GET    /orders
+GET    /orders/:orderId
+PUT    /orders/:orderId/status
+DELETE /orders/:orderId
+GET    /orders/analytics/summary
+```
+
+## SUPPLIER ROUTES (`/api/suppliers`)
+
+```
+POST   /suppliers/register
+POST   /suppliers/login
+GET    /suppliers
+GET    /suppliers/:supplierId
+PUT    /suppliers/:supplierId
+POST   /suppliers/materials
+PUT    /suppliers/materials/:materialId
+DELETE /suppliers/materials/:materialId
+GET    /suppliers/materials
+POST   /suppliers/orders
+GET    /suppliers/analytics
+```
+
+## TOURISM ROUTES (`/api/tourism`)
+
+```
+POST   /tourism/packages
+GET    /tourism/packages
+GET    /tourism/packages/:packageId
+PUT    /tourism/packages/:packageId
+DELETE /tourism/packages/:packageId
+POST   /tourism/bookings
+GET    /tourism/bookings
+POST   /tourism/vr-content
+GET    /tourism/gps-culture/:latitude/:longitude
+POST   /tourism/personalize
+```
+
+## REVIEW ROUTES (`/api/reviews`)
+
+```
+POST   /reviews
+GET    /reviews
+GET    /reviews/product/:productId
+PUT    /reviews/:reviewId
+DELETE /reviews/:reviewId
+PUT    /reviews/admin/approve/:reviewId
+```
+
+## INQUIRY ROUTES (`/api/inquiries`)
+
+```
+POST   /inquiries
+GET    /inquiries
+GET    /inquiries/:inquiryId
+PUT    /inquiries/:inquiryId
+DELETE /inquiries/:inquiryId
+POST   /inquiries/:inquiryId/respond
+```
+
+## AI SERVICES ROUTES (`/api/ai`)
+
+```
+POST   /ai/cultural-story
+POST   /ai/translate
+POST   /ai/ar-visualization
+POST   /ai/iot-data
+```
+
+## BLOCKCHAIN ROUTES (`/api/blockchain`)
+
+```
+POST   /blockchain/verify-artisan
+POST   /blockchain/generate-nft
+POST   /blockchain/verify-product
+POST   /blockchain/smart-contract/create
+POST   /blockchain/smart-contract/execute
+GET    /blockchain/history/:entityId
+```
+
+## IOT ROUTES (`/api/iot`)
+
+```
+POST   /iot/devices/register
+PUT    /iot/devices/:deviceId/status
+GET    /iot/devices/:deviceId/data
+GET    /iot/devices
+POST   /iot/environment
+GET    /iot/inventory/:artisanId
+GET    /iot/production-report/:artisanId
+```
+
+## PAYMENT ROUTES (`/api/payments`)
+
+```
+POST   /payments/process
+GET    /payments/:paymentId/status
+GET    /payments
+POST   /payments/:paymentId/refund
+GET    /payments/analytics/summary
+```
+
+## SYSTEM ROUTES
+
+```
+GET    /api/health
+```
+
+---
+
+## AUTHENTICATION REQUIREMENTS
+
+**🔓 Public Routes (No Auth Required):**
+
+- `POST /artisans/register`
+- `POST /artisans/login`
+- `POST /customers/register`
+- `POST /customers/login`
+- `POST /suppliers/register`
+- `POST /suppliers/login`
+- `GET /products`
+- `GET /products/:productId`
+- `GET /suppliers/materials`
+- `GET /tourism/packages`
+- `GET /tourism/packages/:packageId`
+- `GET /reviews/product/:productId`
+- `POST /inquiries`
+- `POST /ai/cultural-story`
+- `POST /ai/translate`
+- `GET /api/health`
+
+**🔒 Customer Auth Required:**
+
+- `GET /customers/recommendations`
+- `PUT /customers/preferences`
+- `POST /customers/track-view`
+- `POST /orders`
+- `GET /orders` (own orders)
+- `POST /tourism/bookings`
+- `POST /reviews`
+- `POST /payments/process`
+
+**🎨 Artisan Auth Required:**
+
+- `POST /products`
+- `PUT /products/:productId`
+- `DELETE /products/:productId`
+- `POST /artisans/ai/photo-analysis`
+- `GET /artisans/ai/business-insights`
+- `GET /orders` (own orders)
+- `PUT /orders/:orderId/status`
+- `POST /iot/devices/register`
+- `GET /iot/inventory/:artisanId`
+
+**🏭 Supplier Auth Required:**
+
+- `POST /suppliers/materials`
+- `PUT /suppliers/materials/:materialId`
+- `DELETE /suppliers/materials/:materialId`
+- `GET /suppliers/analytics`
+
+**👑 Admin Auth Required:**
+
+- `GET /artisans`
+- `PUT /artisans/admin/block/:artisanId`
+- `GET /payments`
+- `GET /payments/analytics/summary`
+- `PUT /reviews/admin/approve/:reviewId`
+- `POST /inquiries/:inquiryId/respond`
+
+---
+
+## HTTP METHODS SUMMARY
+
+- **GET**: Retrieve data
+- **POST**: Create new resources
+- **PUT**: Update existing resources
+- **DELETE**: Remove resources
+
+## QUERY PARAMETERS (Common)
+
+- `page` - Page number for pagination
+- `limit` - Items per page
+- `category` - Filter by category
+- `minPrice` / `maxPrice` - Price range filters
+- `sortBy` - Sort field
+- `sortOrder` - asc/desc
 
 This documentation provides comprehensive API endpoints and data structures for easy integration with web, mobile, and desktop applications connecting to the ArtisanConnect backend system.
