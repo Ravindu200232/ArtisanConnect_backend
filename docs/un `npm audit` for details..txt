@@ -1,0 +1,123 @@
+un `npm audit` for details.
+PS D:\Sliit\IT Field\GitHub repo\Git\Audio_shop_frontend> npx cap init
+[?] What is the name of your app?
+    This should be a human-friendly app name, like what you'd see in the App Store.
+√ Name ... Kv Audio
+[?] What should be the Package ID for your app?
+    Package IDs (aka Bundle ID in iOS and Application ID in Android) are unique identifiers for apps. They must be in
+    reverse domain name notation, generally representing a domain name that you or your company owns.
+√ Package ID ... com.example.app
+√ Creating capacitor.config.json in D:\Sliit\IT Field\GitHub repo\Git\Audio_shop_frontend in 94.88ms
+[success] capacitor.config.json created!
+
+Next steps:
+https://capacitorjs.com/docs/getting-started#where-to-go-next
+PS D:\Sliit\IT Field\GitHub repo\Git\Audio_shop_frontend> npm install @capacitor/android
+>> npx cap add android
+
+added 1 package, and audited 471 packages in 3s
+
+144 packages are looking for funding
+  run `npm fund` for details
+
+13 vulnerabilities (6 low, 3 moderate, 3 high, 1 critical)
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.
+√ Adding native android project in android in 124.19ms
+√ add in 124.85ms
+[warn] sync could not run--missing dist directory.
+[success] android platform added!
+Follow the Developer Workflow guide to get building:
+https://capacitorjs.com/docs/basics/workflow
+PS D:\Sliit\IT Field\GitHub repo\Git\Audio_shop_frontend> npm run build
+>> npx cap sync
+
+> frontend@0.0.0 build
+> vite build
+
+vite v6.0.9 building for production...
+transforming (1) src\main.jsxBrowserslist: browsers data (caniuse-lite) is 8 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+✓ 217 modules transformed.
+dist/index.html                    0.45 kB │ gzip:   0.30 kB
+dist/assets/index-BqFT1qvQ.css    36.37 kB │ gzip:   6.77 kB
+dist/assets/browser-nwVEYlMu.js    0.34 kB │ gzip:   0.27 kB
+dist/assets/index-B-Becz-9.js    538.50 kB │ gzip: 160.22 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks    
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.63s
+√ Copying web assets from dist to android\app\src\main\assets\public in 31.54ms
+√ Creating capacitor.config.json in android\app\src\main\assets in 1.72ms
+√ copy android in 55.97ms
+√ Updating Android plugins in 6.19ms
+√ update android in 118.07ms
+√ copy web in 12.66ms
+√ update web in 13.59ms
+[info] Sync finished in 0.265s
+PS D:\Sliit\IT Field\GitHub repo\Git\Audio_shop_frontend> npx cap open android
+[info] Opening Android project at: android.
+PS D:\Sliit\IT Field\GitHub repo\Git\Audio_shop_frontend> npm run build
+>> npx cap sync android
+>> cd android
+>> ./gradlew assembleDebug
+>>
+
+> frontend@0.0.0 build
+> vite build
+
+vite v6.0.9 building for production...
+transforming (1) src\main.jsxBrowserslist: browsers data (caniuse-lite) is 8 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+✓ 217 modules transformed.
+dist/index.html                    0.45 kB │ gzip:   0.30 kB
+dist/assets/index-BqFT1qvQ.css    36.37 kB │ gzip:   6.77 kB
+dist/assets/browser-nwVEYlMu.js    0.34 kB │ gzip:   0.27 kB
+dist/assets/index-B-Becz-9.js    538.50 kB │ gzip: 160.22 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks    
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 5.45s
+√ Copying web assets from dist to android\app\src\main\assets\public in 341.07ms
+√ Creating capacitor.config.json in android\app\src\main\assets in 1.74ms
+√ copy android in 365.47ms
+√ Updating Android plugins in 9.14ms
+√ update android in 123.12ms
+[info] Sync finished in 0.76s
+
+Welcome to Gradle 8.11.1!
+
+Here are the highlights of this release:
+ - Parallel load and store for Configuration Cache
+ - Java compilation errors at the end of the build output
+ - Consolidated report for warnings and deprecations
+
+For more details see https://docs.gradle.org/8.11.1/release-notes.html
+
+Starting a Gradle Daemon, 1 incompatible Daemon could not be reused, use --status for details
+
+> Configure project :app
+WARNING: Using flatDir should be avoided because it doesn't support any meta-data formats.
+
+> Configure project :capacitor-cordova-android-plugins
+WARNING: Using flatDir should be avoided because it doesn't support any meta-data formats.
+
+> Task :capacitor-android:compileDebugJavaWithJavac
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.                                                                                    
+[Incubating] Problems report is available at: file:///D:/Sliit/IT%20Field/GitHub%20repo/Git/Audio_shop_frontend/android/build/reports/problems/problems-report.html
+
+BUILD SUCCESSFUL in 1m 13s
+85 actionable tasks: 53 executed, 32 up-to-date
+PS D:\Sliit\IT Field\GitHub repo\Git\Audio_shop_frontend\android> 
+
+
