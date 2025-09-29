@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const collectionSchema = new mongoose.Schema({
 
-    restaurantId: {
+    shopId: {
         type: String,
         required: true
     },
@@ -35,6 +35,11 @@ const collectionSchema = new mongoose.Schema({
         type: String,
         required: true,
         enum: ["fastfood", "familyMeals", "dessert"]
+    },
+    rating : {
+        type : Number,
+        required : true,
+        default : 3
     },
     isApprove: {
         type: Boolean,

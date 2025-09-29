@@ -1,6 +1,6 @@
 import Collection from "../models/collection.js";
 import Order from "../models/order.js";
-import { checkAdmin, checkCustomer, checkHasAccount, checkRestaurant } from "./authController.js";
+import { checkAdmin, checkCustomer, checkHasAccount, checkOwner } from "./authController.js";
 
 export async function addOrder(req, res) {
   const data = req.body;
@@ -35,7 +35,7 @@ export async function addOrder(req, res) {
         address: req.user.address,
         key: product._id,
         orderId: nextOrderId,
-        restaurantId: product.restaurantId,
+        shopId: product.shopId,
         ownerId: product.ownerId,
         Item_Id: product._id,
         Item_name: product.name,
@@ -81,7 +81,7 @@ export async function getOrder(req,res) {
                return 
             }
 
-            if(checkRestaurant(req)){
+            if(checkOwner(req)){
 
               const result = await Order.find({
                 ownerId : req.user.id

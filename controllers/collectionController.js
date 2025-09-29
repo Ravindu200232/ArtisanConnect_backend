@@ -1,5 +1,5 @@
 import Collection from "../models/collection.js";
-import Restaurant from "../models/owner.js";
+
 import {
   checkAdmin,
   checkHasAccount,
@@ -43,12 +43,12 @@ export async function createCollection(req, res) {
   }
 }
 //view collection
-export async function getRestaurantCollection(req, res) {
+export async function getShopCollection(req, res) {
   try {
-    const restaurantID = req.params.id;
+    const shopID = req.params.id;
 
     const result = await Collection.find({
-      restaurantId: restaurantID,
+      shopId: shopID,
     });
     res.json(result);
     return;

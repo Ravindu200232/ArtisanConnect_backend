@@ -5,14 +5,14 @@ import {
   deleteCollection,
   getAll,
   getOne,
-  getRestaurantCollection,
+  getShopCollection,
   updateCollection,
 } from "../controllers/collectionController.js";
 
 const collectionRoute = express.Router();
 
 collectionRoute.post("/", createCollection);
-collectionRoute.get("/getAll/:id", getRestaurantCollection);
+collectionRoute.get("/getAll/:id", getShopCollection);
 collectionRoute.put("/update/:id", updateCollection);
 collectionRoute.delete("/delete/:id", deleteCollection);
 collectionRoute.get("/", getAll);

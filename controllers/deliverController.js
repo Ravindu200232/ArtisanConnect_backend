@@ -16,7 +16,10 @@ export async function addDelivery(req, res) {
 export async function getDelivery(req, res) {
     try {
 
-        if(checkCustomer(req) || checkOwner(req)){
+        if(checkCustomer(req) || checkOwner
+        
+        
+        (req)){
 
             const result =await Delivery.find({
                 customerEmail : req.user.email

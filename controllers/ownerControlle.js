@@ -1,3 +1,4 @@
+
 import Owner from "../models/owner.js";
 import {
   checkAdmin,
@@ -101,7 +102,7 @@ export async function updateOwner(req, res) {
 
         if (updateResult.modifiedCount === 0) {
           res.status(404).json({
-            message: "No restaurant found to update",
+            message: "No shop found to update",
           });
           return;
         }

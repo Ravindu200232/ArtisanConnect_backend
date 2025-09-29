@@ -35,7 +35,7 @@ export async function addOrder(req, res) {
         address: req.user.address,
         key: product._id,
         orderId: nextOrderId,
-        restaurantId: product.restaurantId,
+        shopId: product.shopId,
         ownerId: product.ownerId,
         Item_Id: product._id,
         Item_name: product.name,
@@ -190,7 +190,7 @@ export async function getQuote(req, res) {
           name: product.name,
           image: product.images[0],
           price: product.price,
-          restaurantId : product.restaurantId
+          shopId : product.shopId
         },
         quantity: quantity,
       });

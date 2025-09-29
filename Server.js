@@ -9,7 +9,7 @@ import inquiryRouter from './routes/inquiryRouter.js';
 import orderRoute from './routes/orderRoute.js';
 import paymentRouter from './routes/paymentRoute.js';
 import notificationRoute from './routes/notificationRoute.js';
-import restaurantRoute from './routes/ownerRoute.js';
+import shopRoute from './routes/ownerRoute.js';
 import collectionRoute from './routes/collectionRoute.js';
 import reviewRouter from './routes/reviewRouter.js';
 import driverRoute from './routes/driverRoute.js';
@@ -52,7 +52,7 @@ app.use("/api/v1/notification",notificationRoute);
 app.use("/api/payment",paymentRouter)
 app.use("/api/v1/users",userRoute)
 app.use("/api/inquiry",inquiryRouter);
-app.use("/api/v1/restaurant",restaurantRoute)
+app.use("/api/v1/owner",shopRoute)
 app.use("/api/v1/collection",collectionRoute)
 app.use("/api/v1/reviews",reviewRouter)
 app.use("/api/v1/orders",orderRoute)

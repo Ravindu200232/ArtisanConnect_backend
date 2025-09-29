@@ -30,7 +30,7 @@ const reviewShema = new mongoose.Schema({
         type : String,
         required : true
     },
-    restaurantName : {
+    shopName : {
         type : String,
         required : true
     },

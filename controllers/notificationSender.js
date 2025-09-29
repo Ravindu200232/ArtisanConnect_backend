@@ -1,6 +1,7 @@
 import nodemailer from "nodemailer";
+import Owner from "../models/owner.js";
 
-import Restaurant from "../models/owner.js";
+
 
 // Email Transporter Configuration
 const transporter = nodemailer.createTransport({
@@ -32,15 +33,15 @@ export async function EmailSender(req, res) {
       itemName,
       qty,
       totalPrice,
-      restaurantId, // Make sure this is sent in the req.body
+      shopId, // Make sure this is sent in the req.body
     } = req.body;
 
-    // Fetch restaurant info
-    const restaurantRes = await Restaurant.findOne({
-      _id: restaurantId,
+    // Fetch shop info
+    const shopRes = await Owner.findOne({
+      _id: shopId,
     });
 
-    console.log(restaurantRes);
+    console.log(shopRes);
 
     const locationLink = `https://www.google.com/maps?q=${lat},${lng}`;
 
@@ -65,11 +66,11 @@ export async function EmailSender(req, res) {
           ).toLocaleString()}</li>
           <li><strong>Location Link:</strong> <a href="${locationLink}" target="_blank">View on Map</a></li>
         </ul>
-        <h3>Restaurant Info</h3>
-        <p><strong>${restaurantRes?.name}</strong></p>
-        <p>Owned by: <strong>${restaurantRes?.ownerName}</strong></p>
-        <p>📍 ${restaurantRes?.address}</p>
-        <p>📞 ${restaurantRes?.phone}</p>
+        <h3>Shop Info</h3>
+        <p><strong>${shopRes?.name}</strong></p>
+        <p>Owned by: <strong>${shopRes?.ownerName}</strong></p>
+        <p>📍 ${shopRes?.address}</p>
+        <p>📞 ${shopRes?.phone}</p>
         <p>Please deliver the item on time. Thank you!</p>
       `,
     };
@@ -95,11 +96,11 @@ export async function EmailSender(req, res) {
           ).toLocaleString()}</li>
           <li><strong>Track Location:</strong> <a href="${locationLink}" target="_blank">Live Location</a></li>
         </ul>
-        <h3>Restaurant Info</h3>
-        <p><strong>${restaurantRes?.name}</strong></p>
-        <p>Owned by: <strong>${restaurantRes?.ownerName}</strong></p>
-        <p>📍 ${restaurantRes?.address}</p>
-        <p>📞 ${restaurantRes?.phone}</p>
+        <h3>Shop Info</h3>
+        <p><strong>${shopRes?.name}</strong></p>
+        <p>Owned by: <strong>${shopRes?.ownerName}</strong></p>
+        <p>📍 ${shopRes?.address}</p>
+        <p>📞 ${shopRes?.phone}</p>
         <p>Thank you for ordering with us!</p>
       `,
     };

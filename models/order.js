@@ -52,10 +52,10 @@ const orderSchema = new mongoose.Schema({
     required: true,
   },
 
-  // Restaurant Info
-  restaurantId: {
+  // Shop Info
+  shopId: {
     type: String,
-    ref: "Restaurant",
+    ref: "Shop",
     required: true,
   },
   ownerId: {
