@@ -265,30 +265,28 @@ export async function getUsers(req, res) {
     
   }
   
-  export async function updateUser(req,res) {
-    const data = req.body;
-    const id = req.params.id;
-  
-    try{
-      if(req.user == null){
-        res.status(401).json({
-          message : "please login"
-        })
-        return
-      }else{
-  
-        await User.updateOne({_id : id},data);
-        res.json({
-          message : "User updated successfully"
-        })
-      }
-    }catch(err){
-      res.status(500).json({
-        message : "Failed to update user"
-      })
+  export async function updateUser(req, res) {
+  const data = req.body;
+  const id = req.params.id;
+
+  try {
+    if (req.user == null) {
+      res.status(401).json({
+        message: "please login",
+      });
+      return;
+    } else {
+      await User.updateOne({ _id: id }, data);
+      res.json({
+        message: "User updated successfully",
+      });
     }
-    
+  } catch (err) {
+    res.status(500).json({
+      message: "Failed to update user",
+    });
   }
+}
   
   export async function deleteUser(req,res) {
     const id = req.params.id;
