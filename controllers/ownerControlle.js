@@ -16,12 +16,14 @@ export async function createOwner(req, res) {
         req.user?.lastName || ""
       }`.trim();
 
-      if (checkOwner(req)) {
+      if (checkOwner(req) || checkAdmin(req)) {
+        
         const newOwner = new Owner(data);
         await newOwner.save();
         res.json({
           message: "now You are an Seller",
         });
+        
         return;
       } else {
         res.status(401).json({

@@ -12,7 +12,6 @@ const OwnerSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
   }, //like type artisan - bathick and meterail supply - fabric
   address: {
     type: String,
