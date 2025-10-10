@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 const OwnerSchema = new mongoose.Schema({
   ownerId: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,  // ✅ Changed from String to ObjectId
+    ref: "User",
     required: true,
   },
   ownerName: {
@@ -12,7 +13,7 @@ const OwnerSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-  }, //like type artisan - bathick and meterail supply - fabric
+  },
   address: {
     type: String,
     required: true,
@@ -39,6 +40,10 @@ const OwnerSchema = new mongoose.Schema({
   verified: {
     type: Boolean,
     default: false,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
 });
 
