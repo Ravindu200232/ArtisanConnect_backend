@@ -363,9 +363,7 @@ export const getCustomerConversations = async (req, res) => {
     const conversationsMap = new Map();
 
     for (const msg of messages) {
-      const shopIdStr = msg.shopId?._id
-        ? msg.shopId._id.toString()
-        : msg.shopId.toString();
+      const shopIdStr = msg.shopId?._id?.toString() ?? msg.shopId?.toString() ?? null;
 
       if (!conversationsMap.has(shopIdStr)) {
         // Get shop owner details

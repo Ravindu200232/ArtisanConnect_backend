@@ -1,9 +1,20 @@
 import Collection from "../models/collection.js";
 import Order from "../models/order.js";
-import { checkAdmin, checkCustomer, checkHasAccount, checkOwner } from "./authController.js";
+import User from "../models/users.js";
+import {
+  checkAdmin,
+  checkCustomer,
+  checkHasAccount,
+  checkOwner,
+} from "./authController.js";
 
 export async function addOrder(req, res) {
   const data = req.body;
+  
+
+
+  const user = await User.findById(req.user.id);
+  console.log(user);
 
   if (!req.user) {
     return res.status(401).json({ message: "Please login and try again" });
@@ -16,23 +27,29 @@ export async function addOrder(req, res) {
       const product = await Collection.findById(item.key);
 
       if (!product) {
-        return res.status(404).json({ message: `Product with key ${item.key} not found` });
+        return res
+          .status(404)
+          .json({ message: `Product with key ${item.key} not found` });
       }
 
       if (!product.available) {
-        return res.status(400).json({ message: `Product with key ${item.key} is not available` });
+        return res
+          .status(400)
+          .json({ message: `Product with key ${item.key} is not available` });
       }
 
       // Generate orderId
       const lastOrder = await Order.find().sort({ orderId: -1 }).limit(1);
       const lastId = lastOrder[0]?.orderId?.replace("ORD", "") ?? "0000";
-      const nextOrderId = "ORD" + String(parseInt(lastId) + 1 + createdOrders.length).padStart(4, "0");
+      const nextOrderId =
+        "ORD" +
+        String(parseInt(lastId) + 1 + createdOrders.length).padStart(4, "0");
 
       const totalAmount = product.price * item.qty;
 
       const newOrder = new Order({
-        email: req.user.email,
-        address: req.user.address,
+        email: user.email,
+        address: user.address,
         key: product._id,
         orderId: nextOrderId,
         shopId: product.shopId,
@@ -41,23 +58,24 @@ export async function addOrder(req, res) {
         Item_name: product.name,
         image: product.images[0],
         price: product.price,
-        phone:req.user.phone,
+        phone: user.phone,
         customerName: req.user.firstName + " " + req.user.lastName,
         quantity: item.qty,
         totalAmount: totalAmount,
         status: "pending",
         paymentStatus: "unpaid",
         isApprove: false,
-        lat: req.user.lat,
-        lng: req.user.lng
+        lat: user.lat,
+        lng: user.lng,
       });
 
       const savedOrder = await newOrder.save();
       createdOrders.push(savedOrder);
-
     } catch (err) {
       console.error(err);
-      return res.status(500).json({ message: "Failed to create order", error: err.message });
+      return res
+        .status(500)
+        .json({ message: "Failed to create order", error: err.message });
     }
   }
 
@@ -67,94 +85,75 @@ export async function addOrder(req, res) {
   });
 }
 
+export async function getOrder(req, res) {
+  try {
+    if (checkHasAccount(req)) {
+      if (checkAdmin(req)) {
+        const result = await Order.find();
+        res.json(result);
+        return;
+      }
 
-export async function getOrder(req,res) {
+      if (checkOwner(req)) {
+        const result = await Order.find({
+          ownerId: req.user.id,
+        });
+        res.json(result);
 
-    try{
-
-       
-        if(checkHasAccount(req)){
-
-            if(checkAdmin(req)){
-               const result = await Order.find();
-               res.json(result)
-               return 
-            }
-
-            if(checkOwner(req)){
-
-              const result = await Order.find({
-                ownerId : req.user.id
-              })
-              res.json(result)
-                
-                return
-            }
-
-            else{
-                res.status(401).json({
-                    message : "cant access this task"
-                })
-                return
-            }
-
-
-        }else{
-            res.status(401).json({
-                message : "cant access this task"
-            })
-            return
-        }
-
-    }catch(err){
-        res.status(500).json({
-            error : "Internal Server error" || err
-        })
+        return;
+      } else {
+        res.status(401).json({
+          message: "cant access this task",
+        });
+        return;
+      }
+    } else {
+      res.status(401).json({
+        message: "cant access this task",
+      });
+      return;
     }
-    
+  } catch (err) {
+    res.status(500).json({
+      error: "Internal Server error" || err,
+    });
+  }
 }
 
-export async function deleteOrder(req,res) {
-
-    try{
-
-        const id = req.params.id;
-        if(checkHasAccount(req)){
-
-            if(checkAdmin(req)){
-                await Order.deleteOne({
-                    _id : id
-                })
-                res.json({
-                    message : "Order deleted successfully"
-                })
-                return
-            }else{
-
-                await Order.deleteOne({
-                    _id : id,
-                    userId : req.user.id
-                })
-                res.json({
-                    message : "Order deleted successfully"
-                })
-                return
-            }
-        }else{
-            res.status(401).json({
-                message : "Please login"
-            })
-            return
-        }
-    }catch(err){
-        res.status(500).json({
-            error : "Internal Server error" || err
-        })
+export async function deleteOrder(req, res) {
+  try {
+    const id = req.params.id;
+    if (checkHasAccount(req)) {
+      if (checkAdmin(req)) {
+        await Order.deleteOne({
+          _id: id,
+        });
+        res.json({
+          message: "Order deleted successfully",
+        });
+        return;
+      } else {
+        await Order.deleteOne({
+          _id: id,
+          userId: req.user.id,
+        });
+        res.json({
+          message: "Order deleted successfully",
+        });
+        return;
+      }
+    } else {
+      res.status(401).json({
+        message: "Please login",
+      });
+      return;
     }
-    
+  } catch (err) {
+    res.status(500).json({
+      error: "Internal Server error" || err,
+    });
+  }
 }
-
-
 
 export async function getQuote(req, res) {
   const data = req.body;
@@ -190,15 +189,13 @@ export async function getQuote(req, res) {
           name: product.name,
           image: product.images[0],
           price: product.price,
-          shopId : product.shopId
+          shopId: product.shopId,
         },
         quantity: quantity,
       });
 
       orderInfo.totalAmount += itemTotal;
-
     } catch (err) {
-      
       return res.status(500).json({
         message: "Something went wrong while processing order quote",
       });
@@ -211,7 +208,6 @@ export async function getQuote(req, res) {
     orderItems: orderInfo.orderItem,
   });
 }
-
 
 export async function updateStatus(req, res) {
   try {
@@ -230,42 +226,38 @@ export async function updateStatus(req, res) {
 
     res.json({ message: "Status updated successfully", order: updatedOrder });
   } catch (err) {
-    res.status(500).json({ error: "Failed to update order status", details: err });
+    res
+      .status(500)
+      .json({ error: "Failed to update order status", details: err });
   }
 }
 
-export async function isApprove(req,res) {
-
-  try{
-    
+export async function isApprove(req, res) {
+  try {
     const id = req.params.id;
 
-    if(checkHasAccount(req)){
-
-      if(checkAdmin){
+    if (checkHasAccount(req)) {
+      if (checkAdmin) {
         await Order.updateOne({
-          isApprove : true
-        })
-        res.json("Order Approved")
-        return
-      }
-      else{
+          isApprove: true,
+        });
+        res.json("Order Approved");
+        return;
+      } else {
         res.status(401).json({
-          message : "Can't access this task"
-        })
-        return
+          message: "Can't access this task",
+        });
+        return;
       }
-    }else{
+    } else {
       res.status(401).json({
-        message : "Can't access this task"
-      })
-      return
+        message: "Can't access this task",
+      });
+      return;
     }
-  }catch(err){
+  } catch (err) {
     res.status(500).json({
-      err : err
-    })
+      err: err,
+    });
   }
-  
 }
-

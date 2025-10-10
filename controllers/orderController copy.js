@@ -4,6 +4,9 @@ import { checkAdmin, checkCustomer, checkHasAccount, checkOwner } from "./authCo
 
 export async function addOrder(req, res) {
   const data = req.body;
+  console.log(data)
+
+  console.log("Request Data:", data);
 
   if (!req.user) {
     return res.status(401).json({ message: "Please login and try again" });
