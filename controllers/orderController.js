@@ -261,3 +261,23 @@ export async function isApprove(req, res) {
     });
   }
 }
+
+export async function getCustomerOrder(req, res) {
+
+  try{
+
+    req.user.email
+
+    const result = await Order.find({
+      email : req.user.email
+    })
+    res.json(result)
+    return
+
+  }
+  catch(err){
+    res.status(500).json({
+      error : "Internal Server error" || err
+    })
+  }
+}
