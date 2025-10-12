@@ -9,6 +9,8 @@ import {
 export async function createCollection(req, res) {
   try {
     const data = req.body;
+
+    console.log("Create Collection Request Body:", data);
     data.ownerId = req.user.id;
     data.itemId =
       "I" +
