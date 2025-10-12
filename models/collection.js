@@ -55,6 +55,11 @@ const collectionSchema = new mongoose.Schema({
       "https://www.pngall.com/wp-content/uploads/5/Collection-PNG-Image.png",
     ],
   },
+  // NEW: Story video field
+  storyVideo: {
+    type: String,
+    default: null,
+  },
 });
 
 const Collection = mongoose.model("collection", collectionSchema);
